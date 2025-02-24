@@ -1,5 +1,9 @@
 package
 {
+   import flash.events.Event;
+   import flash.events.KeyboardEvent;
+   import flash.ui.Keyboard;
+   
    public class Pipboy_StatsPage extends PipboyPage
    {
        
@@ -30,12 +34,34 @@ package
       
       private var _currentTab:uint = 0;
       
+      private var pipboyMenu:*;
+      
       public function Pipboy_StatsPage()
       {
          super();
          this._PerksTab = new PerksTab();
          this.RefreshTabs();
          ImprovedPipboyStatsConfig.init(this);
+         addEventListener(Event.ADDED_TO_STAGE,this.addedToStageHandler);
+      }
+      
+      private function addedToStageHandler(param1:Event) : void
+      {
+         var movieRoot:* = stage.getChildAt(0);
+         this.pipboyMenu = "Menu_mc" in movieRoot ? movieRoot.Menu_mc : null;
+         stage.addEventListener(KeyboardEvent.KEY_UP,this.keyUpHandler);
+      }
+      
+      private function keyUpHandler(param1:KeyboardEvent) : void
+      {
+         if(!visible || !ImprovedPipboyStatsConfig.get().EnableHotkeyTabChanges || !this.pipboyMenu)
+         {
+            return;
+         }
+         if(param1.keyCode >= Keyboard.NUMBER_1 && param1.keyCode <= Keyboard.NUMBER_7)
+         {
+            this.pipboyMenu.TryToSetTab(param1.keyCode - Keyboard.NUMBER_1,"Strafe");
+         }
       }
       
       private function RefreshTabs() : void
