@@ -39,7 +39,8 @@ package
          return {
             "HidePerksFromEffectsTab":true,
             "PerksTitle":"PERKS",
-            "CurrentlyText":"\nCurrently:"
+            "CurrentlyText":"\nCurrently:",
+            "EnableHotkeyTabChanges":true
          };
       }
       
@@ -72,6 +73,10 @@ package
                   if(_config.CurrentlyText == null)
                   {
                      _config.CurrentlyText = "\nCurrently:";
+                  }
+                  if(_config.EnableHotkeyTabChanges == null)
+                  {
+                     _config.EnableHotkeyTabChanges = true;
                   }
                   _statsPage.TabNames[2] = _config.PerksTitle;
                }
