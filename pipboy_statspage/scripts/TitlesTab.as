@@ -2,6 +2,8 @@ package
 {
    import Shared.AS3.BCGridList;
    import Shared.AS3.BGSExternalInterface;
+   import Shared.AS3.Data.BSUIDataManager;
+   import Shared.AS3.Data.FromClientDataEvent;
    import Shared.AS3.Events.CustomEvent;
    import Shared.GlobalFunc;
    import flash.events.Event;
@@ -34,6 +36,8 @@ package
       
       private var _DataObj:Object = null;
       
+      private var MapUsername:String = "";
+      
       public function TitlesTab()
       {
          super();
@@ -45,6 +49,30 @@ package
          this.List_mc.addEventListener(BCGridList.ITEM_PRESS,this.onItemPress);
          addEventListener(BCGridList.SELECTION_EDGE_BOUNCE,this.onEdgeBounce);
          addEventListener(BCGridList.SELECTION_CHANGE,this.onHighlightChange);
+         BSUIDataManager.Subscribe("MapMenuData",this.updateMapMenuData);
+      }
+      
+      private function updateMapMenuData(event:FromClientDataEvent) : void
+      {
+         if(ImprovedPipboyStatsConfig.get().UnrestrictTitles)
+         {
+            var i:int = event.data.MarkerData.length - 1;
+            while(i >= 0)
+            {
+               if(Boolean(event.data.MarkerData[i].isLocalPlayersCamp))
+               {
+                  var parts:* = event.data.MarkerData[i].owningPlayerName.split(/\|/);
+                  if(parts.length > 1)
+                  {
+                     parts = parts.slice(1);
+                  }
+                  this.MapUsername = parts.join(" ");
+                  this.updateTitle();
+                  break;
+               }
+               i--;
+            }
+         }
       }
       
       public function set IsPrefix(param1:Boolean) : *
@@ -96,7 +124,14 @@ package
       private function selectNewTitle(param1:int) : Boolean
       {
          var _loc4_:* = undefined;
-         var _loc2_:Array = this._IsPrefix ? this._DataObj.PlayerTitlePrefixArray : this._DataObj.PlayerTitleSuffixArray;
+         if(ImprovedPipboyStatsConfig.get().UnrestrictTitles)
+         {
+            var _loc2_:Array = this._DataObj.PlayerTitlePrefixArray.concat(this._DataObj.PlayerTitleSuffixArray).sortOn("Name",Array.CASEINSENSITIVE);
+         }
+         else
+         {
+            _loc2_ = this._IsPrefix ? this._DataObj.PlayerTitlePrefixArray : this._DataObj.PlayerTitleSuffixArray;
+         }
          var _loc3_:Boolean = false;
          for each(_loc4_ in _loc2_)
          {
@@ -119,24 +154,37 @@ package
       {
          if(this._IsActive && this._DataObj && Boolean(this._DataObj.PlayerTitleFlag))
          {
-            this.List_mc.entryData = this._IsPrefix ? this._DataObj.PlayerTitlePrefixArray.sortOn("Name",Array.CASEINSENSITIVE) : this._DataObj.PlayerTitleSuffixArray.sortOn("Name",Array.CASEINSENSITIVE);
+            if(ImprovedPipboyStatsConfig.get().UnrestrictTitles)
+            {
+               this.List_mc.entryData = this._DataObj.PlayerTitlePrefixArray.concat(this._DataObj.PlayerTitleSuffixArray).sortOn("Name",Array.CASEINSENSITIVE);
+            }
+            else
+            {
+               this.List_mc.entryData = this._IsPrefix ? this._DataObj.PlayerTitlePrefixArray.sortOn("Name",Array.CASEINSENSITIVE) : this._DataObj.PlayerTitleSuffixArray.sortOn("Name",Array.CASEINSENSITIVE);
+            }
             this.updateTitle();
          }
       }
       
       private function updateTitle() : void
       {
+         var _loc4_:Array;
          var _loc1_:String = "";
          var _loc2_:String = "";
          var _loc3_:Array = (this._DataObj.PlayerTitlePrefixArray as Array).filter(this.filterForSelected);
          if(_loc3_.length > 0)
          {
-            _loc1_ = _loc3_[0].Name;
+            _loc1_ = _loc3_.map(function(x:*):*
+            {
+               return x.Name;
+            }).join(" ");
          }
-         var _loc4_:Array;
          if((_loc4_ = (this._DataObj.PlayerTitleSuffixArray as Array).filter(this.filterForSelected)).length > 0)
          {
-            _loc2_ = _loc4_[0].Name;
+            _loc2_ = _loc4_.map(function(x:*):*
+            {
+               return x.Name;
+            }).join(" ");
          }
          this.Name_tf.text = this._BaseName;
          if(_loc1_ != "" || _loc2_ != "")
@@ -149,6 +197,10 @@ package
             if(_loc2_ != "")
             {
                this.Name_tf.appendText(" " + _loc2_);
+            }
+            if(this.MapUsername != "")
+            {
+               this.Name_tf.appendText(" (" + this.MapUsername + ")");
             }
          }
          GlobalFunc.TruncateSingleLineText(this.Name_tf);
