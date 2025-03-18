@@ -4,7 +4,7 @@ package
    import Shared.GlobalFunc;
    import flash.text.TextField;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol183")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol185")]
    public class SPECIALListEntry extends BSScrollingListEntry
    {
        

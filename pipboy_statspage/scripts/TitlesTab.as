@@ -9,7 +9,7 @@ package
    import flash.events.Event;
    import flash.text.TextField;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol219")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol221")]
    public class TitlesTab extends PipboyTab
    {
       

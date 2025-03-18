@@ -2,7 +2,7 @@ package
 {
    import Shared.AS3.BSScrollingListEntry;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol180")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol182")]
    public dynamic class Stats_CategoriesListEntry extends BSScrollingListEntry
    {
        

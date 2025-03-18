@@ -3,12 +3,15 @@ package
    import Shared.AS3.BSUIComponent;
    import Shared.GlobalFunc;
    import flash.text.TextField;
+   import flash.text.TextFormat;
    import scaleform.gfx.Extensions;
    import scaleform.gfx.TextFieldEx;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol167")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol169")]
    public class ActiveEffects_Entry extends BSUIComponent
    {
+      
+      private static const DEFAULT_TEXT_SIZE:uint = 28;
        
       
       public var Source_tf:TextField;
@@ -46,6 +49,7 @@ package
          var _loc3_:String = null;
          var _loc7_:Object = null;
          var _loc8_:TextField = null;
+         var _loc9_:TextFormat = null;
          this._EffectsText = "";
          var _loc2_:* = 0;
          while(_loc2_ < this.m_ExtraTextfields.length)
@@ -87,23 +91,31 @@ package
                this._EffectsText = _loc7_.text + " " + (_loc7_.value > 0 ? "+" : "") + (Math.round(_loc7_.value * 100) / 100).toString() + (_loc7_.showAsPercent == true ? "%" : "");
             }
             this._hasDuration = _loc7_.duration != undefined && _loc7_.duration > 0;
-            if(_loc5_)
+            if(this._EffectsText != "")
             {
-               _loc5_ = false;
-               this.Effects_tf.text = this._EffectsText;
-               _loc6_ = this.Effects_tf.y + this.Effects_tf.height;
-            }
-            else
-            {
-               (_loc8_ = new TextField()).setTextFormat(this.Effects_tf.getTextFormat());
-               _loc8_.text = this._EffectsText;
-               this.addChild(_loc8_);
-               _loc8_.x = this.Effects_tf.x;
-               _loc8_.y = _loc6_;
-               _loc8_.width = this.Effects_tf.width;
-               _loc8_.height = this.Effects_tf.height;
-               _loc6_ = _loc8_.y + _loc8_.height;
-               this.m_ExtraTextfields.push(_loc8_);
+               if(_loc5_)
+               {
+                  _loc5_ = false;
+                  this.Effects_tf.text = this._EffectsText;
+                  _loc6_ = this.Effects_tf.y + this.Effects_tf.height;
+               }
+               else
+               {
+                  _loc8_ = new TextField();
+                  TextFieldEx.setTextAutoSize(_loc8_,TextFieldEx.TEXTAUTOSZ_SHRINK);
+                  _loc8_.text = this._EffectsText;
+                  this.addChild(_loc8_);
+                  _loc8_.x = this.Effects_tf.x;
+                  _loc8_.y = _loc6_;
+                  _loc8_.width = this.Effects_tf.width;
+                  _loc8_.height = this.Effects_tf.height;
+                  _loc6_ = _loc8_.y + _loc8_.height;
+                  (_loc9_ = this.Effects_tf.getTextFormat()).font = "$MAIN_Font_Bold";
+                  _loc9_.size = DEFAULT_TEXT_SIZE;
+                  _loc9_.color = 16777215;
+                  _loc8_.setTextFormat(_loc9_);
+                  this.m_ExtraTextfields.push(_loc8_);
+               }
             }
          }
          SetIsDirty();
