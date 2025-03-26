@@ -53,15 +53,6 @@ package
          this.updateEquippedPerks(null);
       }
       
-      private function get MapPerkNames() : *
-      {
-         if(ImprovedPipboyStatsConfig.get().MapPerkNames)
-         {
-            return ImprovedPipboyStatsConfig.get().MapPerkNames;
-         }
-         return {};
-      }
-      
       private function updateEquippedPerks(event:*) : void
       {
          var i:int;
@@ -204,7 +195,7 @@ package
             {
                activeEffects = param1.DataObj.ActiveEffects.filter(function(x:*):Boolean
                {
-                  return !(EquippedPerks[x.text] != null || MapPerkNames[x.text] != null && EquippedPerks[MapPerkNames[x.text]] != null);
+                  return ImprovedPipboyStatsConfig.HidePerksExclude.indexOf(x.text) != -1 || !(EquippedPerks[x.text] != null || ImprovedPipboyStatsConfig.MapPerkNames[x.text] != null && EquippedPerks[ImprovedPipboyStatsConfig.MapPerkNames[x.text]] != null || ImprovedPipboyStatsConfig.HideOtherEffects.indexOf(x.text) != -1);
                });
             }
             else

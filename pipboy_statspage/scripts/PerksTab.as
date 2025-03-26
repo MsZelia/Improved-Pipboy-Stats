@@ -45,24 +45,6 @@ package
          }
       }
       
-      private function get CurveDirs() : *
-      {
-         if(ImprovedPipboyStatsConfig.get().CurveDataDirectories)
-         {
-            return ImprovedPipboyStatsConfig.get().CurveDataDirectories;
-         }
-         return {};
-      }
-      
-      private function get MapPerkNames() : *
-      {
-         if(ImprovedPipboyStatsConfig.get().MapPerkNames)
-         {
-            return ImprovedPipboyStatsConfig.get().MapPerkNames;
-         }
-         return {};
-      }
-      
       private function init() : void
       {
          var font:TextFormat;
@@ -176,7 +158,7 @@ package
                      activeEffects.splice(j,1);
                      break;
                   }
-                  if(MapPerkNames[activeEffects[j].text] != null && perkData[i].text == MapPerkNames[activeEffects[j].text])
+                  if(ImprovedPipboyStatsConfig.MapPerkNames[activeEffects[j].text] != null && perkData[i].text == ImprovedPipboyStatsConfig.MapPerkNames[activeEffects[j].text])
                   {
                      perkData[i].effects = activeEffects[j].effects;
                      activeEffects.splice(j,1);
@@ -227,14 +209,14 @@ package
       
       private function loadCurvesForPerk(perkName:String) : void
       {
-         if(perkName == null || CurveDirs[perkName] == null || CurveDirs[perkName].length == 0)
+         if(perkName == null || ImprovedPipboyStatsConfig.CurveDirs[perkName] == null || ImprovedPipboyStatsConfig.CurveDirs[perkName].length == 0)
          {
             return;
          }
          var i:int = 0;
-         while(i < CurveDirs[perkName].length)
+         while(i < ImprovedPipboyStatsConfig.CurveDirs[perkName].length)
          {
-            loadCurveData(CurveDirs[perkName][i]);
+            loadCurveData(ImprovedPipboyStatsConfig.CurveDirs[perkName][i]);
             i++;
          }
          this.CurveData[perkName] = true;
@@ -279,26 +261,26 @@ package
             var i:int = 0;
             if(this.CurveData[selectedEntry.text])
             {
-               if(this.CurveDirs[selectedEntry.text] != null && this.CurveDirs[selectedEntry.text].length > 0)
+               if(ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text] != null && ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text].length > 0)
                {
                   var c:int = 0;
                   var maxRows:int = 0;
-                  if(this.CurveDirs[selectedEntry.text].length == 1)
+                  if(ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text].length == 1)
                   {
-                     if(this.CurveData[this.CurveDirs[selectedEntry.text][0]] != null)
+                     if(this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][0]] != null)
                      {
-                        maxRows = int(this.CurveData[this.CurveDirs[selectedEntry.text][0]].length);
+                        maxRows = int(this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][0]].length);
                      }
                   }
                   else
                   {
-                     while(c < this.CurveDirs[selectedEntry.text].length)
+                     while(c < ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text].length)
                      {
-                        if(this.CurveData[this.CurveDirs[selectedEntry.text][c]] != null)
+                        if(this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]] != null)
                         {
-                           if(maxRows < this.CurveData[this.CurveDirs[selectedEntry.text][c]].length)
+                           if(maxRows < this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]].length)
                            {
-                              maxRows = int(this.CurveData[this.CurveDirs[selectedEntry.text][c]].length);
+                              maxRows = int(this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]].length);
                            }
                         }
                         c++;
@@ -309,13 +291,13 @@ package
                   {
                      var line:String = "";
                      c = 0;
-                     while(c < this.CurveDirs[selectedEntry.text].length)
+                     while(c < ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text].length)
                      {
-                        if(this.CurveData[this.CurveDirs[selectedEntry.text][c]] != null)
+                        if(this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]] != null)
                         {
-                           if(this.CurveData[this.CurveDirs[selectedEntry.text][c]].length > i)
+                           if(this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]].length > i)
                            {
-                              var segment:String = this.CurveData[this.CurveDirs[selectedEntry.text][c]][i].x + ": " + this.CurveData[this.CurveDirs[selectedEntry.text][c]][i].y;
+                              var segment:String = this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]][i].x + ": " + this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]][i].y;
                               line += segment + "\t\t".substr(Math.floor(segment.length / 6));
                            }
                            else

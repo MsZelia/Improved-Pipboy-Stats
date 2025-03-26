@@ -9,7 +9,7 @@ package
    public class ImprovedPipboyStatsConfig
    {
       
-      public static const VERSION:String = "1.0.1";
+      public static const VERSION:String = "1.0.2";
       
       public static const MOD_NAME:String = "ImprovedPipboyStats";
       
@@ -28,6 +28,42 @@ package
       public static function ShowMessage(param1:String) : void
       {
          GlobalFunc.ShowHUDMessage("[" + MOD_NAME + " v" + VERSION + "] " + param1);
+      }
+      
+      public static function get MapPerkNames() : *
+      {
+         if(ImprovedPipboyStatsConfig.get().MapPerkNames)
+         {
+            return ImprovedPipboyStatsConfig.get().MapPerkNames;
+         }
+         return {};
+      }
+      
+      public static function get CurveDirs() : *
+      {
+         if(ImprovedPipboyStatsConfig.get().CurveDataDirectories)
+         {
+            return ImprovedPipboyStatsConfig.get().CurveDataDirectories;
+         }
+         return {};
+      }
+      
+      public static function get HidePerksExclude() : *
+      {
+         if(ImprovedPipboyStatsConfig.get().HidePerksFromEffectsTabExclude)
+         {
+            return ImprovedPipboyStatsConfig.get().HidePerksFromEffectsTabExclude;
+         }
+         return [];
+      }
+      
+      public static function get HideOtherEffects() : *
+      {
+         if(ImprovedPipboyStatsConfig.get().HideOtherFromEffectsTab)
+         {
+            return ImprovedPipboyStatsConfig.get().HideOtherFromEffectsTab;
+         }
+         return [];
       }
       
       public static function get() : Object
