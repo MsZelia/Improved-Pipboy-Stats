@@ -53,23 +53,6 @@ package
          this.updateEquippedPerks(null);
       }
       
-      private function indexOfCaseInsensitiveString(arr:Array, searchingFor:String, fromIndex:uint = 0) : int
-      {
-         var lowercaseSearchString:String = searchingFor.toLowerCase();
-         var arrayLength:uint = arr.length;
-         var index:uint = fromIndex;
-         while(index < arrayLength)
-         {
-            var element:* = arr[index];
-            if(element is String && lowercaseSearchString.indexOf(element.toLowerCase()) != -1)
-            {
-               return index;
-            }
-            index++;
-         }
-         return -1;
-      }
-      
       private function updateEquippedPerks(event:*) : void
       {
          var i:int;
@@ -223,7 +206,19 @@ package
             {
                activeEffects = activeEffects.filter(function(x:*):Boolean
                {
-                  return indexOfCaseInsensitiveString(ImprovedPipboyStatsConfig.HideOtherEffects,x.text) == -1;
+                  var lowercaseSearchString:String = x.text.toLowerCase();
+                  var arrayLength:uint = uint(ImprovedPipboyStatsConfig.HideOtherEffects.length);
+                  var index:uint = 0;
+                  while(index < arrayLength)
+                  {
+                     var element:* = ImprovedPipboyStatsConfig.HideOtherEffects[index];
+                     if(element is String && lowercaseSearchString.indexOf(element.toLowerCase()) == 0)
+                     {
+                        return false;
+                     }
+                     index++;
+                  }
+                  return true;
                });
             }
             for each(_loc4_ in activeEffects)
