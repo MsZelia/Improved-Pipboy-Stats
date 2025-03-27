@@ -53,6 +53,23 @@ package
          this.updateEquippedPerks(null);
       }
       
+      private function indexOfCaseInsensitiveString(arr:Array, searchingFor:String, fromIndex:uint = 0) : int
+      {
+         var lowercaseSearchString:String = searchingFor.toLowerCase();
+         var arrayLength:uint = arr.length;
+         var index:uint = fromIndex;
+         while(index < arrayLength)
+         {
+            var element:* = arr[index];
+            if(element is String && lowercaseSearchString.indexOf(element.toLowerCase()) != -1)
+            {
+               return index;
+            }
+            index++;
+         }
+         return -1;
+      }
+      
       private function updateEquippedPerks(event:*) : void
       {
          var i:int;
@@ -195,12 +212,19 @@ package
             {
                activeEffects = param1.DataObj.ActiveEffects.filter(function(x:*):Boolean
                {
-                  return ImprovedPipboyStatsConfig.HidePerksExclude.indexOf(x.text) != -1 || !(EquippedPerks[x.text] != null || ImprovedPipboyStatsConfig.MapPerkNames[x.text] != null && EquippedPerks[ImprovedPipboyStatsConfig.MapPerkNames[x.text]] != null || ImprovedPipboyStatsConfig.HideOtherEffects.indexOf(x.text) != -1);
+                  return ImprovedPipboyStatsConfig.HidePerksExclude.indexOf(x.text) != -1 || !(EquippedPerks[x.text] != null || ImprovedPipboyStatsConfig.MapPerkNames[x.text] != null && EquippedPerks[ImprovedPipboyStatsConfig.MapPerkNames[x.text]] != null);
                });
             }
             else
             {
                activeEffects = param1.DataObj.ActiveEffects;
+            }
+            if(ImprovedPipboyStatsConfig.HideOtherEffects.length > 0)
+            {
+               activeEffects = activeEffects.filter(function(x:*):Boolean
+               {
+                  return indexOfCaseInsensitiveString(ImprovedPipboyStatsConfig.HideOtherEffects,x.text) == -1;
+               });
             }
             for each(_loc4_ in activeEffects)
             {
