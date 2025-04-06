@@ -1,7 +1,6 @@
 package
 {
-   import flash.events.Event;
-   import flash.events.KeyboardEvent;
+   import flash.events.*;
    import flash.ui.Keyboard;
    
    public class Pipboy_StatsPage extends PipboyPage
