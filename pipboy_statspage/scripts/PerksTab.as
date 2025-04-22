@@ -26,6 +26,8 @@ package
       
       private var CurveData:*;
       
+      private var dummy_tf:TextField;
+      
       public function PerksTab()
       {
          this.EquippedPerks = [];
@@ -74,6 +76,9 @@ package
             this.Description_tf.x = this.PerkCardsList_mc.x + this.PerkCardsList_mc.width + 20;
             this.Description_tf.y = this.PerkCardsList_mc.y - 40;
             this.Description_tf.text = "Loading perks data...";
+            this.dummy_tf = new TextField();
+            this.dummy_tf.defaultTextFormat = font;
+            this.dummy_tf.setTextFormat(font);
          }
          catch(e:*)
          {
@@ -297,8 +302,12 @@ package
                         {
                            if(this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]].length > i)
                            {
-                              var segment:String = this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]][i].x + ": " + this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]][i].y;
-                              line += segment + "\t\t".substr(Math.floor(segment.length / 6));
+                              dummy_tf.text = this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]][i].x + ": " + this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]][i].y;
+                              while(dummy_tf.textWidth < 128)
+                              {
+                                 dummy_tf.text += "\t";
+                              }
+                              line += dummy_tf.text;
                            }
                            else
                            {
