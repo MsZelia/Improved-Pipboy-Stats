@@ -9,7 +9,7 @@ package
    public class ImprovedPipboyStatsConfig
    {
       
-      public static const VERSION:String = "1.0.5";
+      public static const VERSION:String = "1.0.6";
       
       public static const MOD_NAME:String = "ImprovedPipboyStats";
       
@@ -74,7 +74,7 @@ package
          }
          return {
             "HidePerksFromEffectsTab":true,
-            "PerksTitle":"PERKS",
+            "PerksTitle":"$PipboyPerksCategory",
             "CurrentlyText":"\nCurrently:",
             "EnableHotkeyTabChanges":true
          };
@@ -104,7 +104,7 @@ package
                   }
                   if(_config.PerksTitle == null)
                   {
-                     _config.PerksTitle = "PERKS";
+                     _config.PerksTitle = "$PipboyPerksCategory";
                   }
                   if(_config.CurrentlyText == null)
                   {

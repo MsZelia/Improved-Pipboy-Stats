@@ -66,7 +66,7 @@ package
       private function RefreshTabs() : void
       {
          addChild(this._PerksTab);
-         _TabNames = new Array("$PipboyConditionCategory","$ACTIVE EFFECTS","PERKS","$PipboySPECIALCategory","$PipboyCollectionsCategory");
+         _TabNames = new Array("$PipboyConditionCategory","$ACTIVE EFFECTS","$PipboyPerksCategory","$PipboySPECIALCategory","$PipboyCollectionsCategory");
          this.tabs = new <PipboyTab>[this.StatusTab_mc,this.ActiveEffectsBase_mc,this._PerksTab,this.SPECIALTab_mc,this.CollectionsTab_mc];
          this.allTabs = new <PipboyTab>[this.StatusTab_mc,this.ActiveEffectsBase_mc,this._PerksTab,this.SPECIALTab_mc,this.CollectionsTab_mc,this.TitlesPrefixTab_mc,this.TitlesSuffixTab_mc];
          if(this._enablePrefix)
