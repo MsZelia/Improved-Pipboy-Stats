@@ -14,7 +14,7 @@ package
    import scaleform.gfx.Extensions;
    import scaleform.gfx.TextFieldEx;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol209")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol211")]
    public class StatusTab extends PipboyTab
    {
        
@@ -87,7 +87,6 @@ package
          this._DamageDirty = false;
          this._EffectsDirty = false;
          this.ConditionBoy_mc = this.ConditionBoyBase_mc.ConditionBoy_mc;
-         this.ConditionBoy_mc.monochrome = true;
          this.ConditionBoy_mc.isMenuInstance = true;
       }
       

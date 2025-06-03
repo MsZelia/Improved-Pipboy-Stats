@@ -9,7 +9,7 @@ package
    import flash.events.Event;
    import flash.text.TextField;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol221")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol223")]
    public class TitlesTab extends PipboyTab
    {
       
@@ -98,6 +98,7 @@ package
       {
          this._LastCheckTime = 0;
          this._Bounced = false;
+         GlobalFunc.PlayMenuSound("UIGeneralFocus");
       }
       
       private function onItemPress() : void
@@ -198,7 +199,7 @@ package
             {
                this.Name_tf.appendText(" " + _loc2_);
             }
-            if(this.MapUsername != "")
+            if(ImprovedPipboyStatsConfig.get().UnrestrictTitles && this.MapUsername != "")
             {
                this.Name_tf.appendText(" (" + this.MapUsername + ")");
             }

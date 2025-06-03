@@ -6,7 +6,7 @@ package
    import flash.display.MovieClip;
    import flash.events.*;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol231")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol233")]
    public class ActiveEffectsTab extends PipboyTab
    {
       

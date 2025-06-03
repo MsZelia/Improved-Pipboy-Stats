@@ -7,7 +7,7 @@ package
    import scaleform.gfx.Extensions;
    import scaleform.gfx.TextFieldEx;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol169")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol171")]
    public class ActiveEffects_Entry extends BSUIComponent
    {
       
@@ -28,6 +28,8 @@ package
       
       private var m_ExtraTextfields:Array;
       
+      private var m_DefaultTextFormat:TextFormat;
+      
       public function ActiveEffects_Entry()
       {
          super();
@@ -36,6 +38,10 @@ package
          TextFieldEx.setTextAutoSize(this.Effects_tf,TextFieldEx.TEXTAUTOSZ_SHRINK);
          this._hasDuration = false;
          this.m_ExtraTextfields = new Array();
+         this.m_DefaultTextFormat = this.Effects_tf.getTextFormat();
+         this.m_DefaultTextFormat.font = "$MAIN_Font_Bold";
+         this.m_DefaultTextFormat.size = DEFAULT_TEXT_SIZE;
+         this.m_DefaultTextFormat.color = 16777215;
       }
       
       public function set sourceText(param1:String) : *
@@ -49,7 +55,6 @@ package
          var _loc3_:String = null;
          var _loc7_:Object = null;
          var _loc8_:TextField = null;
-         var _loc9_:TextFormat = null;
          this._EffectsText = "";
          var _loc2_:* = 0;
          while(_loc2_ < this.m_ExtraTextfields.length)
@@ -101,7 +106,7 @@ package
                }
                else
                {
-                  _loc8_ = new TextField();
+                  (_loc8_ = new TextField()).setTextFormat(this.m_DefaultTextFormat);
                   TextFieldEx.setTextAutoSize(_loc8_,TextFieldEx.TEXTAUTOSZ_SHRINK);
                   _loc8_.text = this._EffectsText;
                   this.addChild(_loc8_);
@@ -110,10 +115,6 @@ package
                   _loc8_.width = this.Effects_tf.width;
                   _loc8_.height = this.Effects_tf.height;
                   _loc6_ = _loc8_.y + _loc8_.height;
-                  (_loc9_ = this.Effects_tf.getTextFormat()).font = "$MAIN_Font_Bold";
-                  _loc9_.size = DEFAULT_TEXT_SIZE;
-                  _loc9_.color = 16777215;
-                  _loc8_.setTextFormat(_loc9_);
                   this.m_ExtraTextfields.push(_loc8_);
                }
             }
