@@ -17,7 +17,6 @@ package
    [Embed(source="/_assets/assets.swf", symbol="symbol231")]
    public class SPECIALTab extends PipboyTab
    {
-       
       
       public var List_mc:BSScrollingList;
       
@@ -154,3 +153,4 @@ package
       }
    }
 }
+

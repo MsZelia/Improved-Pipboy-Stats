@@ -12,7 +12,6 @@ package Shared.AS3.Styles
       public static var restoreListIndex_Inspectable:Boolean = false;
       
       public static var textOption_Inspectable:String = BSScrollingList.TEXT_OPTION_SHRINK_TO_FIT;
-       
       
       public function Pipboy_Stats_SpecialListStyle()
       {
@@ -20,3 +19,4 @@ package Shared.AS3.Styles
       }
    }
 }
+

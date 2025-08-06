@@ -11,7 +11,6 @@ package
    
    public class Pipboy_BottomBar extends BSUIComponent
    {
-       
       
       public var Info_mc:MovieClip;
       
@@ -199,3 +198,4 @@ package
       }
    }
 }
+

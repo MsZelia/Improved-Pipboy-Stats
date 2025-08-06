@@ -4,7 +4,6 @@ package
    
    public class PipboyTab extends PipboySubMenu
    {
-       
       
       private var _TabIndex:uint;
       
@@ -43,3 +42,4 @@ package
       }
    }
 }
+

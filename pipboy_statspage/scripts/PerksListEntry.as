@@ -4,7 +4,6 @@ package
    
    public class PerksListEntry extends BSScrollingListEntry
    {
-       
       
       public function PerksListEntry()
       {
@@ -21,3 +20,4 @@ package
       }
    }
 }
+

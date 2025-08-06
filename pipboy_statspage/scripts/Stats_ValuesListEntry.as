@@ -7,7 +7,6 @@ package
    [Embed(source="/_assets/assets.swf", symbol="symbol180")]
    public class Stats_ValuesListEntry extends BSScrollingListEntry
    {
-       
       
       public var Value_tf:TextField;
       
@@ -24,3 +23,4 @@ package
       }
    }
 }
+

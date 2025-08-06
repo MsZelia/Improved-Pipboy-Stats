@@ -13,7 +13,6 @@ package
       private static const SCROLL_AMOUNT:Number = 50;
       
       private static const HEIGHT_OFFSET:Number = 50;
-       
       
       public var ActiveEffects_mc:MovieClip;
       
@@ -258,3 +257,4 @@ package
       }
    }
 }
+

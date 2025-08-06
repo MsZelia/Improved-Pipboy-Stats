@@ -8,7 +8,6 @@ package Shared.AS3.COMPANIONAPP
    
    public class MobileScrollMovieClip
    {
-       
       
       private var _scrollMovieClip:MovieClip;
       
@@ -34,11 +33,10 @@ package Shared.AS3.COMPANIONAPP
       
       private const BOUNCE_FACTOR:Number = 0.6;
       
-      private var _prevMouseDownPoint:Point;
+      private var _prevMouseDownPoint:Point = new Point();
       
       public function MobileScrollMovieClip(param1:MovieClip, param2:Rectangle)
       {
-         this._prevMouseDownPoint = new Point();
          super();
          this._scrollMovieClip = param1;
          this._scrollZone = param2;
@@ -140,3 +138,4 @@ package Shared.AS3.COMPANIONAPP
       }
    }
 }
+

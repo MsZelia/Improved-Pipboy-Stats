@@ -12,7 +12,6 @@ package
    {
       
       private static const DEFAULT_TEXT_SIZE:uint = 28;
-       
       
       public var Source_tf:TextField;
       
@@ -106,7 +105,8 @@ package
                }
                else
                {
-                  (_loc8_ = new TextField()).setTextFormat(this.m_DefaultTextFormat);
+                  _loc8_ = new TextField();
+                  _loc8_.setTextFormat(this.m_DefaultTextFormat);
                   TextFieldEx.setTextAutoSize(_loc8_,TextFieldEx.TEXTAUTOSZ_SHRINK);
                   _loc8_.text = this._EffectsText;
                   this.addChild(_loc8_);
@@ -143,3 +143,4 @@ package
       }
    }
 }
+

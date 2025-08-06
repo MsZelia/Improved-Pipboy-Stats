@@ -4,7 +4,6 @@ package Pipboy.COMPANIONAPP
    
    public class StatsPerksListItemRenderer extends PipboyListItemRenderer
    {
-       
       
       public function StatsPerksListItemRenderer()
       {
@@ -17,3 +16,4 @@ package Pipboy.COMPANIONAPP
       }
    }
 }
+

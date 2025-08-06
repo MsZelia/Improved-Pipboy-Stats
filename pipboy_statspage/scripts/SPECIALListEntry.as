@@ -7,7 +7,6 @@ package
    [Embed(source="/_assets/assets.swf", symbol="symbol187")]
    public class SPECIALListEntry extends BSScrollingListEntry
    {
-       
       
       public var Value_tf:TextField;
       
@@ -38,3 +37,4 @@ package
       }
    }
 }
+

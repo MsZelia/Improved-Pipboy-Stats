@@ -17,7 +17,6 @@ package
    [Embed(source="/_assets/assets.swf", symbol="symbol211")]
    public class StatusTab extends PipboyTab
    {
-       
       
       public var Name_tf:TextField;
       
@@ -53,7 +52,7 @@ package
       
       private var _ActiveEffect_ScrollDist:Number;
       
-      private var ShownEffectIconTypes:Array;
+      private var ShownEffectIconTypes:Array = new Array();
       
       private var _DataObj:Object;
       
@@ -75,7 +74,6 @@ package
       
       public function StatusTab()
       {
-         this.ShownEffectIconTypes = new Array();
          this.StimpakButton = new BSButtonHintData("$Stimpak","E","PSN_A","Xenon_A",1,this.UseStimpak);
          this.RadawayButton = new BSButtonHintData("$Radaway","R","PSN_X","Xenon_X",1,this.UseRadaway);
          super();
@@ -125,7 +123,8 @@ package
          {
             if(this.ShownEffectIconTypes.indexOf(_loc2_.type) == -1)
             {
-               (_loc4_ = new ActiveEffectsWidget()).effectsType = _loc2_.type;
+               _loc4_ = new ActiveEffectsWidget();
+               _loc4_.effectsType = _loc2_.type;
                _loc4_.effectList = param1.DataObj.ActiveEffects;
                _loc4_.showingEffects = false;
                switch(_loc2_.PlusMinus)
@@ -247,8 +246,8 @@ package
          {
             _loc1_ = _loc3_[0].Name;
          }
-         var _loc4_:Array;
-         if((_loc4_ = (this._DataObj.PlayerTitleSuffixArray as Array).filter(this.filterForSelected)).length > 0)
+         var _loc4_:Array = (this._DataObj.PlayerTitleSuffixArray as Array).filter(this.filterForSelected);
+         if(_loc4_.length > 0)
          {
             _loc2_ = _loc4_[0].Name;
          }
@@ -323,3 +322,4 @@ package
       }
    }
 }
+

@@ -10,7 +10,6 @@ package
    [Embed(source="/_assets/assets.swf", symbol="symbol168")]
    public class ActiveEffectsWidget extends BSUIComponent
    {
-       
       
       public var IconBackground_mc:MovieClip;
       
@@ -144,3 +143,4 @@ package
       }
    }
 }
+

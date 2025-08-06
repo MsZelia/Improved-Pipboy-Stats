@@ -5,7 +5,6 @@ package
    [Embed(source="/_assets/assets.swf", symbol="symbol174")]
    public dynamic class Stats_CategoryList extends BSScrollingList
    {
-       
       
       public function Stats_CategoryList()
       {
@@ -13,3 +12,4 @@ package
       }
    }
 }
+

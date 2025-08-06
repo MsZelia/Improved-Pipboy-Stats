@@ -12,26 +12,23 @@ package
    
    public class PerksTab extends PipboyTab
    {
-       
       
       public var Description_tf:TextField;
       
       public var PerkCardsList_mc:BSScrollingList;
       
-      private var EquippedPerks:Array;
+      private var EquippedPerks:Array = [];
       
       private var ActiveEffects:*;
       
       private var PerksUIData:*;
       
-      private var CurveData:*;
+      private var CurveData:* = {};
       
       private var dummy_tf:TextField;
       
       public function PerksTab()
       {
-         this.EquippedPerks = [];
-         this.CurveData = {};
          super();
          init();
          this.PerksUIData = BSUIDataManager.GetDataFromClient("PerksUIData").data;
@@ -350,3 +347,4 @@ package
       }
    }
 }
+

@@ -5,7 +5,6 @@ package Pipboy.COMPANIONAPP
    
    public class StatsSpecialListItemRenderer extends PipboyListItemRenderer
    {
-       
       
       public var Value_tf:TextField;
       
@@ -27,3 +26,4 @@ package Pipboy.COMPANIONAPP
       }
    }
 }
+

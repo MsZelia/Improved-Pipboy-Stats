@@ -5,7 +5,6 @@ package
    
    public class Pipboy_StatsPage extends PipboyPage
    {
-       
       
       public var StatusTab_mc:PipboyTab;
       
@@ -182,3 +181,4 @@ package
       }
    }
 }
+

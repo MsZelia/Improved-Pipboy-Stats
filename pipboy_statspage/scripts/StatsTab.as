@@ -9,7 +9,6 @@ package
    [Embed(source="/_assets/assets.swf", symbol="symbol176")]
    public class StatsTab extends PipboyTab
    {
-       
       
       public var CategoryList_mc:BSScrollingList;
       
@@ -110,3 +109,4 @@ package
       }
    }
 }
+

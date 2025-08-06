@@ -18,7 +18,6 @@ package
       private static var _config:* = null;
       
       private static var _statsPage:* = null;
-       
       
       public function ImprovedPipboyStatsConfig()
       {
@@ -140,3 +139,4 @@ package
       }
    }
 }
+

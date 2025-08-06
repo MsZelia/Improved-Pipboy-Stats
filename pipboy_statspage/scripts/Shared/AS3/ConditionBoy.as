@@ -32,7 +32,6 @@ package Shared.AS3
       private static const HEAD_THIRST_FRAME:String = "Drugged";
       
       private static const HEAD_FERAL_FRAME:String = "Feral";
-       
       
       private var BodyClip:MovieClip = null;
       
@@ -42,13 +41,13 @@ package Shared.AS3
       
       private var BodyLoader:PipboyLoader;
       
-      private var ColorFileText:String;
+      private var ColorFileText:String = new String();
       
-      private var PrimaryCondition:Object;
+      private var PrimaryCondition:Object = {};
       
-      private var SecondaryConditions:Vector.<Object>;
+      private var SecondaryConditions:Vector.<Object> = new Vector.<Object>();
       
-      private var CurrentlyShownCondition:Object;
+      private var CurrentlyShownCondition:Object = {};
       
       private var PreloadedBodyClips:Vector.<PipboyLoader>;
       
@@ -74,10 +73,6 @@ package Shared.AS3
       
       public function ConditionBoy()
       {
-         this.ColorFileText = new String();
-         this.PrimaryCondition = {};
-         this.SecondaryConditions = new Vector.<Object>();
-         this.CurrentlyShownCondition = {};
          super();
          this.LoadHead();
       }
@@ -159,7 +154,7 @@ package Shared.AS3
          if(!this.IsMutated && Boolean(param1.isMutated))
          {
             this.SecondaryConditions.push({
-               "headFrame":(this.m_IsGhoul ? "Ghoul" : (!!("" + _loc2_) ? "MutatedDamaged" : "Mutated")),
+               "headFrame":(this.m_IsGhoul ? "Ghoul" : ("" + _loc2_ ? "MutatedDamaged" : "Mutated")),
                "bodyId":CLIP_BODY_MUTATION_ID
             });
          }
@@ -349,3 +344,4 @@ package Shared.AS3
       }
    }
 }
+

@@ -28,7 +28,6 @@ package
       public static const PIPBOY_PAGE_DATA:uint = 2;
       
       public static const PIPBOY_PAGE_RADIO:uint = 3;
-       
       
       public var Header_mc:Pipboy_Header;
       
@@ -52,11 +51,11 @@ package
       
       private var PlaceCampButton:BSButtonHintData;
       
-      private var ToggleQuickboyButton:BSButtonHintData;
+      private var ToggleQuickboyButton:BSButtonHintData = new BSButtonHintData("$ToggleQuickboyButton","V","PSN_Select","Xenon_Select",1,null);
       
       private var ReadOnlyWarning:MovieClip;
       
-      private var controlsBlockTimer:Timer;
+      private var controlsBlockTimer:Timer = new Timer(150,1);
       
       public var READ_ONLY_WARNING_NONE:* = 0;
       
@@ -70,8 +69,6 @@ package
       {
          this.GridViewButton = new BSButtonHintData("$Grid View","T","PSN_Y","Xenon_Y",1,this.onGridViewPress);
          this.PlaceCampButton = new BSButtonHintData("$$PlaceCampButton (0)","Z","PSN_L1","Xenon_L1",1,this.onPlaceCamp);
-         this.ToggleQuickboyButton = new BSButtonHintData("$ToggleQuickboyButton","V","PSN_Select","Xenon_Select",1,null);
-         this.controlsBlockTimer = new Timer(150,1);
          super();
          this.BGSCodeObj = new Object();
          this.DataObj = new Pipboy_DataObj();
@@ -494,3 +491,4 @@ package
       }
    }
 }
+

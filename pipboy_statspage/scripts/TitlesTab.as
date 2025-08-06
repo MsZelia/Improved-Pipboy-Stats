@@ -14,7 +14,6 @@ package
    {
       
       private static const RECHECK_DELAY:Number = 1000;
-       
       
       public var List_mc:BCGridList;
       
@@ -284,3 +283,4 @@ package
       }
    }
 }
+
