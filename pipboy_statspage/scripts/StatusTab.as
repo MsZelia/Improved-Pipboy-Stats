@@ -14,7 +14,7 @@ package
    import scaleform.gfx.Extensions;
    import scaleform.gfx.TextFieldEx;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol211")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol213")]
    public class StatusTab extends PipboyTab
    {
       

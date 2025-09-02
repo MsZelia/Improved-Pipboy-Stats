@@ -9,7 +9,7 @@ package
    import flash.events.Event;
    import flash.text.TextField;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol223")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol225")]
    public class TitlesTab extends PipboyTab
    {
       
@@ -179,7 +179,8 @@ package
                return x.Name;
             }).join(" ");
          }
-         if((_loc4_ = (this._DataObj.PlayerTitleSuffixArray as Array).filter(this.filterForSelected)).length > 0)
+         _loc4_ = (this._DataObj.PlayerTitleSuffixArray as Array).filter(this.filterForSelected);
+         if(_loc4_.length > 0)
          {
             _loc2_ = _loc4_.map(function(x:*):*
             {

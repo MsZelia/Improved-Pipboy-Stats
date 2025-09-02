@@ -7,7 +7,7 @@ package Shared.AS3
    import flash.net.URLRequest;
    import flash.utils.setTimeout;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol207")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol209")]
    public dynamic class ConditionBoy extends BSUIComponent
    {
       

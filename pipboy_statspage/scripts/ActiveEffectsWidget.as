@@ -7,7 +7,7 @@ package
    import scaleform.gfx.Extensions;
    import scaleform.gfx.TextFieldEx;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol168")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol170")]
    public class ActiveEffectsWidget extends BSUIComponent
    {
       

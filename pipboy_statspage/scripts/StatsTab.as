@@ -6,7 +6,7 @@ package
    import Shared.AS3.Styles.Pipboy_DataPage_CategoriesListStyle;
    import Shared.AS3.Styles.Pipboy_DataPage_ValuesListStyle;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol176")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol178")]
    public class StatsTab extends PipboyTab
    {
       

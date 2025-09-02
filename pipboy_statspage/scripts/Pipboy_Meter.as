@@ -3,7 +3,7 @@ package
    import Shared.AS3.BSUIComponent;
    import flash.display.MovieClip;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol206")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol208")]
    public class Pipboy_Meter extends BSUIComponent
    {
       

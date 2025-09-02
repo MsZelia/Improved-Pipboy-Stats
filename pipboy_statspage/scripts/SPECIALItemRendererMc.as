@@ -2,7 +2,7 @@ package
 {
    import Pipboy.COMPANIONAPP.StatsSpecialListItemRenderer;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol191")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol193")]
    public dynamic class SPECIALItemRendererMc extends StatsSpecialListItemRenderer
    {
       

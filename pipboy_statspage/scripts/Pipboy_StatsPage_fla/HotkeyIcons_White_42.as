@@ -2,7 +2,7 @@ package Pipboy_StatsPage_fla
 {
    import flash.display.MovieClip;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol162")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol164")]
    public dynamic class HotkeyIcons_White_42 extends MovieClip
    {
       
