@@ -226,7 +226,7 @@ package
                {
                   _loc8_ = new ActiveEffectsWidget();
                   _loc8_.effectsType = _loc4_.type;
-                  _loc8_.effectList = param1.DataObj.ActiveEffects;
+                  _loc8_.effectList = activeEffects;
                   _loc8_.showingEffects = true;
                   switch(_loc4_.PlusMinus)
                   {
