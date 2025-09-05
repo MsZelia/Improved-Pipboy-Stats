@@ -25,6 +25,8 @@ package
       
       private var CurveData:* = {};
       
+      private var PerkCardClipNames:* = {};
+      
       private var dummy_tf:TextField;
       
       public function PerksTab()
@@ -114,6 +116,7 @@ package
                   if(PerksUIData.perkCardDataA[i].equipped)
                   {
                      perks.push(PerksUIData.perkCardDataA[i]);
+                     PerkCardClipNames[PerksUIData.perkCardDataA[i].text] = PerksUIData.perkCardDataA[i].clipName;
                   }
                   i++;
                }
@@ -261,28 +264,29 @@ package
             setDescription(selectedEntry.text + " (" + selectedEntry.amount + ")");
             addDescription(selectedEntry.description);
             var i:int = 0;
-            if(this.CurveData[selectedEntry.text])
+            if(this.CurveData[PerkCardClipNames[selectedEntry.text]])
             {
-               if(ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text] != null && ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text].length > 0)
+               var curveDirs:* = ImprovedPipboyStatsConfig.CurveDirs[PerkCardClipNames[selectedEntry.text]];
+               if(curveDirs != null && curveDirs.length > 0)
                {
                   var c:int = 0;
                   var maxRows:int = 0;
-                  if(ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text].length == 1)
+                  if(curveDirs.length == 1)
                   {
-                     if(this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][0]] != null)
+                     if(this.CurveData[curveDirs[0]] != null)
                      {
-                        maxRows = int(this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][0]].length);
+                        maxRows = int(this.CurveData[curveDirs[0]].length);
                      }
                   }
                   else
                   {
-                     while(c < ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text].length)
+                     while(c < curveDirs.length)
                      {
-                        if(this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]] != null)
+                        if(this.CurveData[curveDirs[c]] != null)
                         {
-                           if(maxRows < this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]].length)
+                           if(maxRows < this.CurveData[curveDirs[c]].length)
                            {
-                              maxRows = int(this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]].length);
+                              maxRows = int(this.CurveData[curveDirs[c]].length);
                            }
                         }
                         c++;
@@ -293,13 +297,13 @@ package
                   {
                      var line:String = "";
                      c = 0;
-                     while(c < ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text].length)
+                     while(c < curveDirs.length)
                      {
-                        if(this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]] != null)
+                        if(this.CurveData[curveDirs[c]] != null)
                         {
-                           if(this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]].length > i)
+                           if(this.CurveData[curveDirs[c]].length > i)
                            {
-                              dummy_tf.text = this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]][i].x + ": " + this.CurveData[ImprovedPipboyStatsConfig.CurveDirs[selectedEntry.text][c]][i].y;
+                              dummy_tf.text = this.CurveData[curveDirs[c]][i].x + ": " + this.CurveData[curveDirs[c]][i].y;
                               while(dummy_tf.textWidth < 128)
                               {
                                  dummy_tf.text += "\t";
@@ -320,7 +324,7 @@ package
             }
             else
             {
-               this.loadCurvesForPerk(selectedEntry.text);
+               this.loadCurvesForPerk(PerkCardClipNames[selectedEntry.text]);
             }
             if(selectedEntry.effects != null && selectedEntry.effects.length > 0)
             {
