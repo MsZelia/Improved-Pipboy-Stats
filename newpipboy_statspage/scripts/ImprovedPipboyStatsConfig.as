@@ -1,5 +1,6 @@
 package
 {
+   import Shared.AS3.Data.BSUIDataManager;
    import Shared.AS3.Events.CustomEvent;
    import Shared.GlobalFunc;
    import com.adobe.serialization.json.*;
