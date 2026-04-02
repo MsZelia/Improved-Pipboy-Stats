@@ -128,21 +128,64 @@ package
       private function updateEquippedPerks(event:*) : void
       {
          var i:int;
-         var perks:Array;
+         var sharedPerk:*;
+         var perks:Array = [];
+         var sharedPerks:* = {};
          try
          {
-            if(PerksUIData && PerksUIData.perkCardDataA)
+            if(PerksUIData)
             {
-               perks = [];
-               i = 0;
-               while(i < PerksUIData.perkCardDataA.length)
+               if(PerksUIData.teammateCardDataA)
                {
-                  if(PerksUIData.perkCardDataA[i].equipped)
+                  perks = [];
+                  i = 0;
+                  while(i < PerksUIData.teammateCardDataA.length)
                   {
-                     perks.push(PerksUIData.perkCardDataA[i]);
-                     PerkCardClipNames[PerksUIData.perkCardDataA[i].text] = PerksUIData.perkCardDataA[i].clipName;
+                     if(PerksUIData.teammateCardDataA[i].equipped)
+                     {
+                        if(sharedPerks[PerksUIData.teammateCardDataA[i].clipName] == null || sharedPerks[PerksUIData.teammateCardDataA[i].clipName].rank <= PerksUIData.teammateCardDataA[i].rank)
+                        {
+                           sharedPerks[PerksUIData.teammateCardDataA[i].clipName] = GlobalFunc.CloneObject(PerksUIData.teammateCardDataA[i]);
+                           PerkCardClipNames[PerksUIData.teammateCardDataA[i].text] = PerksUIData.teammateCardDataA[i].clipName;
+                        }
+                     }
+                     i++;
                   }
-                  i++;
+               }
+               if(PerksUIData.perkCardDataA)
+               {
+                  perks = [];
+                  i = 0;
+                  while(i < PerksUIData.perkCardDataA.length)
+                  {
+                     if(PerksUIData.perkCardDataA[i].equipped)
+                     {
+                        sharedPerk = sharedPerks[PerksUIData.perkCardDataA[i].clipName];
+                        if(sharedPerk == null)
+                        {
+                           perks.push(PerksUIData.perkCardDataA[i]);
+                        }
+                        else if(sharedPerk.rank <= PerksUIData.perkCardDataA[i].rank)
+                        {
+                           perks.push(PerksUIData.perkCardDataA[i]);
+                           sharedPerks[PerksUIData.perkCardDataA[i].clipName] = null;
+                        }
+                        else
+                        {
+                           perks.push(sharedPerk);
+                           sharedPerks[PerksUIData.perkCardDataA[i].clipName] = null;
+                        }
+                        PerkCardClipNames[PerksUIData.perkCardDataA[i].text] = PerksUIData.perkCardDataA[i].clipName;
+                     }
+                     i++;
+                  }
+                  for(perk in sharedPerks)
+                  {
+                     if(sharedPerks[perk] != null)
+                     {
+                        perks.push(sharedPerks[perk]);
+                     }
+                  }
                }
                this.EquippedPerks = perks;
             }
@@ -167,7 +210,7 @@ package
                return;
             }
             this.updateEquippedPerks();
-            perkData = EquippedPerks.concat();
+            perkData = this.EquippedPerks.concat();
             activeEffects = param1.concat();
             i = 0;
             while(i < activeEffects.length)
