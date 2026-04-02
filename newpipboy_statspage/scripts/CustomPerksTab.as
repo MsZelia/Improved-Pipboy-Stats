@@ -179,12 +179,12 @@ package
                      }
                      i++;
                   }
-                  for(perk in sharedPerks)
+               }
+               for(perk in sharedPerks)
+               {
+                  if(sharedPerks[perk] != null)
                   {
-                     if(sharedPerks[perk] != null)
-                     {
-                        perks.push(sharedPerks[perk]);
-                     }
+                     perks.push(sharedPerks[perk]);
                   }
                }
                this.EquippedPerks = perks;
