@@ -1,5 +1,6 @@
 package
 {
+   import Shared.AS3.Events.CustomEvent;
    import Shared.GlobalFunc;
    import flash.display.MovieClip;
    import flash.events.MouseEvent;
