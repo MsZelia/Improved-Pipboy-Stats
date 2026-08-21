@@ -5,6 +5,7 @@ package
    import Shared.GlobalFunc;
    import com.adobe.serialization.json.*;
    import flash.events.Event;
+   import flash.events.IOErrorEvent;
    import flash.events.KeyboardEvent;
    import flash.net.URLLoader;
    import flash.net.URLRequest;
@@ -14,7 +15,7 @@ package
    public class ImprovedPipboyStatsConfig
    {
       
-      public static const VERSION:String = "1.2.6";
+      public static const VERSION:String = "1.2.7";
       
       public static const MOD_NAME:String = "ImprovedPipboyStats";
       
@@ -133,11 +134,16 @@ package
          var loader:URLLoader = null;
          try
          {
+            loaderError = function(e:IOErrorEvent):void
+            {
+               ShowMessage("Error loading config: " + e.text);
+            };
             loaderComplete = function(param1:Event):void
             {
+               var line:uint;
                try
                {
-                  _config = new JSONDecoder(loader.data,true).getValue();
+                  _config = new JSONDecoder(loader.data,false).getValue();
                   if(_config.CurrentlyText == null)
                   {
                      _config.CurrentlyText = "\nCurrently:";
@@ -161,21 +167,20 @@ package
                      });
                   }
                }
+               catch(e:JSONParseError)
+               {
+                  line = e.text.substr(0,e.location).match(/\n/g).length + 1;
+                  ShowMessage("Error parsing config: " + e.message + " in line " + line);
+               }
                catch(e:Error)
                {
-                  if(e is JSONParseError)
-                  {
-                     ShowMessage("Error parsing config at index " + e.location + ": " + e.text.substring(e.location - 20,e.location));
-                  }
-                  else
-                  {
-                     ShowMessage("Error parsing config: " + e);
-                  }
+                  ShowMessage("Error parsing config: " + e);
                }
             };
             url = new URLRequest(CONFIG_FILE_LOCATION);
             loader = new URLLoader();
             loader.load(url);
+            loader.addEventListener(IOErrorEvent.IO_ERROR,loaderError);
             loader.addEventListener(Event.COMPLETE,loaderComplete);
          }
          catch(e:Error)
