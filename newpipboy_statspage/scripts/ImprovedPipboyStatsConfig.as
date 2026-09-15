@@ -15,7 +15,7 @@ package
    public class ImprovedPipboyStatsConfig
    {
       
-      public static const VERSION:String = "1.2.7";
+      public static const VERSION:String = "1.2.8";
       
       public static const MOD_NAME:String = "ImprovedPipboyStats";
       

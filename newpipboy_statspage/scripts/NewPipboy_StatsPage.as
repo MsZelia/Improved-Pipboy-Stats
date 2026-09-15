@@ -1,5 +1,6 @@
 package
 {
+   import Shared.AS3.Data.BSUIDataManager;
    import flash.events.Event;
    
    public class NewPipboy_StatsPage extends IPipBoyPage
@@ -47,7 +48,7 @@ package
          PageData = aData;
          if(CurrentTab != null)
          {
-            CurrentTab.processProvider(aData);
+            CurrentTab.processProvider(aData,aType);
          }
       }
       
@@ -84,7 +85,18 @@ package
       
       override public function ProcessUserEvent(strEventName:String) : Boolean
       {
-         if(CurrentTab)
+         var bhandled:Boolean = false;
+         switch(strEventName)
+         {
+            case "Stimpak":
+               BSUIDataManager.dispatchEvent(new Event(NewPipBoyShared.STAT_USE_STIMPAK));
+               bhandled = true;
+               break;
+            case "Radaway":
+               BSUIDataManager.dispatchEvent(new Event(NewPipBoyShared.STAT_USE_RADAWAY));
+               bhandled = true;
+         }
+         if(!bhandled && Boolean(CurrentTab))
          {
             return CurrentTab.ProcessUserEvent(strEventName);
          }
